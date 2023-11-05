@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --text-large: Inter;
+  --font-roboto: Roboto;
+  --font-poppins: Poppins;
+
+  /* font sizes */
+  --text-large-size: 16px;
+  --text-medium-size: 14px;
+  --text-small-size: 12px;
+  --font-size-5xl: 24px;
+  --font-size-xl: 20px;
+  --font-size-13xl: 32px;
+  --font-size-29xl: 48px;
+  --font-size-mini: 15px;
+
+  /* Colors */
+  --dominant: #fff;
+  --input-text: #8e8e8e;
+  --gray: #676f82;
+  --light-border: #e2e4ea;
+  --dark-gray: #334158;
+  --color-snow: #fffbfb;
+  --color-beige: #fcf8e3;
+  --color-darkorange: #fe8f1d;
+  --color-black: #000;
+  --color-chocolate: #d77613;
+
+  /* Spacing */
+  --default-border-raius: 4px;
+
+  /* Gaps */
+  --gap-7xs: 6px;
+
+  /* Paddings */
+  --padding-9xl: 28px;
+  --padding-sm: 14px;
+  --padding-base: 16px;
+  --padding-3xs: 10px;
+  --padding-2xl: 21px;
+  --padding-181xl: 200px;
+  --padding-16xl: 35px;
+  --padding-37xl: 56px;
+  --padding-101xl: 120px;
+
+  /* Border radiuses */
+  --br-7xs: 6px;
+  --br-9xs: 4px;
+}
