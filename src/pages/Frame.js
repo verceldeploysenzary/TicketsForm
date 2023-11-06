@@ -1,23 +1,26 @@
 import styles from "./Frame.module.css";
 import validate from "./FormValidation";
 import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const Frame = () => {
   const [input, setInput] = useState({
     name: "",
-    lastName: "",
+    company: "",
     email: "",
     message: "",
   });
   
   const [errors, setErrors] = useState({
     name: "",
-    lastName: "",
+    company: "",
     email: "",
     message: "",
   });
 
   const [showErrors, setShowErrors] = useState(false);
+
+
 
   const handleChange = (e) => {
     setInput({
@@ -34,6 +37,38 @@ const Frame = () => {
 
 
 
+
+
+  function submit() {
+    console.log(errors);
+    setShowErrors(true);
+
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "service_hx714vi",
+        "template_r9kf53t",
+        form.current,
+        "ytL8b4o8pWUk16U5K"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message send");
+
+          setInput({
+            name: "",
+            company: "",
+            email: "",
+            message: "",
+          });
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    
+  }
 
 
 
@@ -94,29 +129,9 @@ const Frame = () => {
   }
 /*   images  */  
 
-  function submit() {
-    console.log(errors);
-    setShowErrors(true);
-    /* if (
-      errors !== "Name required" &&
-      errors !== "lastName required" &&
-      errors !== "email required" &&
-      errors !== "message required"
-    ) {
-      setTimeout(() => {
-        setInput({
-          name: "",
-          lastName: "",
-          email: "",
-          message: "",
-        });
-      }, 3000);
-    } */
-  }
-
   return (
     <div className={styles.formParent}>
-      <form className={styles.form}>
+      <form ref={form} className={styles.form} onSubmit={submit}>
         <div className={styles.formText}>
           <div className={styles.ticketForm}>Ticket Form</div>
           <div className={styles.fillInYour}>
@@ -155,21 +170,21 @@ const Frame = () => {
           </div>
           <input
             className={
-              showErrors === true && errors.lastName === "lastName required"
+              showErrors === true && errors.company === "company required"
                 ? styles.special
                 : styles.inputFieldBaseChild
             }
-            placeholder="Last Name *"
+            placeholder="Company *"
             type="text"
-            value={input.lastName}
-            name="lastName"
+            value={input.company}
+            name="company"
             onChange={(e) => handleChange(e)}
           />
 
-          {showErrors === true && errors.lastName === "lastName required" ? (
+          {showErrors === true && errors.company === "company required" ? (
             <div className={styles.alert}>Last Name is required</div>
-          ) : errors.lastName === "invalid Last Name format" ? (
-            <div className={styles.alert}>Last Name must not contain numbers</div>
+          ) : errors.company === "invalid Company format" ? (
+            <div className={styles.alert}>Company must not contain numbers</div>
           ) : null}
           <div className={styles.formText}>
             <div className={styles.inputFieldBase}>
@@ -274,13 +289,13 @@ const Frame = () => {
             </div>
           </div>
         </div>
-      </form>
-
       <button className={styles.button} type="submit">
-        <div className={styles.submit} onClick={(e) => submit(e)}>
+        <div className={styles.submit}>
           Submit
         </div>
       </button>
+      </form>
+
     </div>
   );
 };

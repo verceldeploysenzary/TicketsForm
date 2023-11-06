@@ -12,10 +12,8 @@ function validate (inputData) {
         errors.name = "invalid Name format";
     }
 
-    if (!inputData.lastName  ){
-        errors.lastName = "lastName required"
-    } else if (/\d/.test(inputData.lastName)) {
-        errors.lastName = "invalid Last Name format";
+    if (!inputData.company  ){
+        errors.company = "company required"
     }
 
 
