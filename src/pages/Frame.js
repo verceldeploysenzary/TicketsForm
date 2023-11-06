@@ -134,7 +134,7 @@ const Frame = () => {
                 <div className={styles.alert}>Name is required</div>
               ) : showErrors === true &&
                 errors.name === "invalid Name format" ? (
-                <div className={styles.alert}>invalid Name format</div>
+                <div className={styles.alert}>Name must not conain numbers</div>
               ) : null}
 
               <div className={styles.thisIsA}>
@@ -155,10 +155,10 @@ const Frame = () => {
             onChange={(e) => handleChange(e)}
           />
 
-          {showErrors === true && errors.lastName === "Last Name required" ? (
-            <div className={styles.alert}>Name is required</div>
+          {showErrors === true && errors.lastName === "lastName required" ? (
+            <div className={styles.alert}>Last Name is required</div>
           ) : showErrors === true && errors.lastName === "invalid Last Name format" ? (
-            <div className={styles.alert}>invalid Last Name format</div>
+            <div className={styles.alert}>Last Name must not contain numbers</div>
           ) : null}
           <div className={styles.formText}>
             <div className={styles.inputFieldBase}>
@@ -203,6 +203,9 @@ const Frame = () => {
             name="message"
             onChange={(e) => handleChange(e)}
           />
+
+
+
 
           {showErrors === true && errors.message === "message required" ? (
             <div className={styles.alert}>Message is required</div>

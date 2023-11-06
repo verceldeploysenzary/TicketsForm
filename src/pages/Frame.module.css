@@ -34,10 +34,12 @@
 .email,
 .inputFieldBaseChild,
 .thisIsA {
+  width: 100%;
   align-self: stretch;
   font-family: var(--text-large);
 }
 .inputFieldBaseChild {
+  width: 100%;
   border: 1px solid var(--light-border);
   font-size: var(--text-large-size);
   background-color: var(--dominant);
@@ -49,6 +51,7 @@
   padding: var(--padding-3xs) var(--padding-sm);
 }
 .special {
+  width: 100%;
   border: 1px solid red;
   font-size: var(--text-large-size);
   background-color: var(--dominant);
@@ -82,16 +85,21 @@
 .email2,
 .emailWrapper,
 .formFields {
+  width: 100%;
   align-self: stretch;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  flex-direction: column;
 }
 .emailWrapperSpecial{
+  width: 100%;
   align-self: stretch;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  flex-direction: column;
+
 }
 
 .alert{
