@@ -9,6 +9,7 @@ const Frame = () => {
     email: "",
     message: "",
   });
+  
   const [errors, setErrors] = useState({
     name: "",
     lastName: "",
@@ -30,6 +31,14 @@ const Frame = () => {
       })
     );
   };
+
+
+
+
+
+
+
+/*   images  */  
   const [images, setImages] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
@@ -83,6 +92,7 @@ const Frame = () => {
   function deleteImage(index) {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   }
+/*   images  */  
 
   function submit() {
     console.log(errors);
@@ -112,6 +122,8 @@ const Frame = () => {
           <div className={styles.fillInYour}>
             Fill in to create your ticket.
           </div>
+          <p className={styles.areRequired}>Required Fields are Marked with *</p>
+
         </div>
         <div className={styles.formFields}>
           <div className={styles.formText}>
@@ -130,13 +142,12 @@ const Frame = () => {
                 name="name"
                 onChange={(e) => handleChange(e)}
               />
-              {showErrors === true && errors.name === "email required" ? (
+              {showErrors === true && errors.name === "Name required" ? (
                 <div className={styles.alert}>Name is required</div>
-              ) : showErrors === true &&
+              ) :
                 errors.name === "invalid Name format" ? (
-                <div className={styles.alert}>Name must not conain numbers</div>
+                <div className={styles.alert}>Name must not contain numbers</div>
               ) : null}
-
               <div className={styles.thisIsA}>
                 This is a hint text for the user
               </div>
@@ -157,7 +168,7 @@ const Frame = () => {
 
           {showErrors === true && errors.lastName === "lastName required" ? (
             <div className={styles.alert}>Last Name is required</div>
-          ) : showErrors === true && errors.lastName === "invalid Last Name format" ? (
+          ) : errors.lastName === "invalid Last Name format" ? (
             <div className={styles.alert}>Last Name must not contain numbers</div>
           ) : null}
           <div className={styles.formText}>
@@ -178,8 +189,7 @@ const Frame = () => {
               />
               {showErrors === true && errors.email === "email required" ? (
                 <div className={styles.alert}>Message is required</div>
-              ) : showErrors === true &&
-                errors.email === "invalid email format" ? (
+              ) : errors.email === "invalid email format" ? (
                 <div className={styles.alert}>invalid email format</div>
               ) : null}
 
@@ -203,19 +213,15 @@ const Frame = () => {
             name="message"
             onChange={(e) => handleChange(e)}
           />
-
-
-
-
           {showErrors === true && errors.message === "message required" ? (
             <div className={styles.alert}>Message is required</div>
-          ) : showErrors === true &&
-            errors.message === "message must be longer than 10 characters" ? (
+          ) : errors.message === "message must be longer than 10 characters" ? (
             <div className={styles.alert}>
               Message must be longer than 10 characters
             </div>
           ) : null}
         </div>
+
 
         <div className={styles.top}>
           <div className={styles.card}>
@@ -269,6 +275,7 @@ const Frame = () => {
           </div>
         </div>
       </form>
+
       <button className={styles.button} type="submit">
         <div className={styles.submit} onClick={(e) => submit(e)}>
           Submit

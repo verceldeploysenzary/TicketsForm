@@ -16,6 +16,11 @@
   font-family: var(--font-roboto);
   color: #576074;
 }
+
+
+
+
+
 .formText {
   align-self: stretch;
   display: flex;
@@ -298,8 +303,10 @@
   z-index: 999;
   color: #0086fe;
 }
-
-
+.areRequired{
+  font-size: 14px;
+  font-family: var(--font-poppins);
+  color: #576074;}
 
 @media screen and (min-width: 3000px) {
   .formParent {
