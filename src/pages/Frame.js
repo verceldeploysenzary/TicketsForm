@@ -13,7 +13,7 @@ const Frame = () => {
     name: "",
     lastName: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   const [showErrors, setShowErrors] = useState(false);
@@ -53,20 +53,20 @@ const Frame = () => {
       }
     }
   }
-  
-  function onDragOver(event){
+
+  function onDragOver(event) {
     event.preventDefault();
-    setIsDragging(true)
-    event.dataTransfer.dropEffect= "copy"
+    setIsDragging(true);
+    event.dataTransfer.dropEffect = "copy";
   }
-  function onDragLeave(event){
+  function onDragLeave(event) {
     event.preventDefault();
-    setIsDragging(false)
+    setIsDragging(false);
   }
-  function onDrop(event){
+  function onDrop(event) {
     event.preventDefault();
-    setIsDragging(false)
-    const files = event.dataTransfer.files
+    setIsDragging(false);
+    const files = event.dataTransfer.files;
     for (let i = 0; i < files.length; i++) {
       if (files[i].type.split("/")[0] !== "image") continue;
       if (!images.some((e) => e.name === files[i].name)) {
@@ -80,28 +80,29 @@ const Frame = () => {
       }
     }
   }
-  function deleteImage(index){
-    setImages((prevImages)=>
-      prevImages.filter((_,i)=> i !== index)
-    ) 
+  function deleteImage(index) {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   }
 
-  function submit(){
-   setShowErrors(true)
-  if(errors !== "Name required" && errors !== "lastName required" && errors !== "email required" && errors !== "message required" ){
-    setTimeout(() => {
-      setInput({
-        name: "",
-        lastName: "",
-        email: "",
-        message: "",
-      });
-    }, 3000);
+  function submit() {
+    console.log(errors);
+    setShowErrors(true);
+    /* if (
+      errors !== "Name required" &&
+      errors !== "lastName required" &&
+      errors !== "email required" &&
+      errors !== "message required"
+    ) {
+      setTimeout(() => {
+        setInput({
+          name: "",
+          lastName: "",
+          email: "",
+          message: "",
+        });
+      }, 3000);
+    } */
   }
-  }
-
-
-
 
   return (
     <div className={styles.formParent}>
@@ -117,42 +118,71 @@ const Frame = () => {
             <div className={styles.inputFieldBase}>
               <div className={styles.email}>Email</div>
               <input
-                className={showErrors === true && errors.name === "Name required" ? styles.special : styles.inputFieldBaseChild}
+                className={
+                  showErrors === true && errors.name === "Name required"
+                    ? styles.special
+                    : styles.inputFieldBaseChild
+                }
                 /* className={styles.inputFieldBaseChild} */
-                placeholder="Your name"
+                placeholder="Name *"
                 type="text"
                 value={input.name}
                 name="name"
                 onChange={(e) => handleChange(e)}
-
               />
+              {showErrors === true && errors.name === "email required" ? (
+                <div className={styles.alert}>Name is required</div>
+              ) : showErrors === true &&
+                errors.name === "invalid Name format" ? (
+                <div className={styles.alert}>invalid Name format</div>
+              ) : null}
+
               <div className={styles.thisIsA}>
                 This is a hint text for the user
               </div>
             </div>
           </div>
           <input
-          className={showErrors === true && errors.lastName === "lastName required" ? styles.special : styles.inputFieldBaseChild}
-            /* className={styles.inputFieldBaseChild} */
-            placeholder="Last Name"
+            className={
+              showErrors === true && errors.lastName === "lastName required"
+                ? styles.special
+                : styles.inputFieldBaseChild
+            }
+            placeholder="Last Name *"
             type="text"
             value={input.lastName}
             name="lastName"
             onChange={(e) => handleChange(e)}
-
           />
+
+          {showErrors === true && errors.lastName === "Last Name required" ? (
+            <div className={styles.alert}>Name is required</div>
+          ) : showErrors === true && errors.lastName === "invalid Last Name format" ? (
+            <div className={styles.alert}>invalid Last Name format</div>
+          ) : null}
           <div className={styles.formText}>
             <div className={styles.inputFieldBase}>
               <div className={styles.email}>Email</div>
               <input
-                className={showErrors === true && errors.email === "email required" ? styles.special : styles.inputFieldBaseChild}
+                className={
+                  showErrors === true && errors.email === "email required"
+                    ? styles.special
+                    : styles.inputFieldBaseChild
+                }
                 /* className={styles.inputFieldBaseChild} */
-                placeholder="Email address"
+                placeholder="Email address *"
                 type="text"
                 value={input.email}
                 name="email"
-                onChange={(e) => handleChange(e)}   
+                onChange={(e) => handleChange(e)}
               />
+              {showErrors === true && errors.email === "email required" ? (
+                <div className={styles.alert}>Message is required</div>
+              ) : showErrors === true &&
+                errors.email === "invalid email format" ? (
+                <div className={styles.alert}>invalid email format</div>
+              ) : null}
+
               <div className={styles.thisIsA}>
                 This is a hint text for the user
               </div>
@@ -160,65 +190,87 @@ const Frame = () => {
           </div>
         </div>
         <div
-        className={showErrors === true && errors.message === "message required" ? styles.emailWrapperSpecial : styles.emailWrapper}
+          className={
+            showErrors === true && errors.message === "message required"
+              ? styles.emailWrapperSpecial
+              : styles.emailWrapper
+          }
         >
-        <textarea
+          <textarea
             className={styles.email2}
-            placeholder="Enter your message"
+            placeholder="Description *"
             value={input.message}
             name="message"
-            onChange={(e) => handleChange(e)}   
+            onChange={(e) => handleChange(e)}
           />
+
+          {showErrors === true && errors.message === "message required" ? (
+            <div className={styles.alert}>Message is required</div>
+          ) : showErrors === true &&
+            errors.message === "message must be longer than 10 characters" ? (
+            <div className={styles.alert}>
+              Message must be longer than 10 characters
+            </div>
+          ) : null}
         </div>
 
         <div className={styles.top}>
           <div className={styles.card}>
-            <p>Drag & Drop image</p>
-          
+            <p>Upload image</p>
+            <p className={styles.dragandrop}>Drag and drop</p>
 
-          <div className={styles.dragarea} onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
-            {isDragging ? (
-              <span className={styles.select}>drop images here </span>
-            ) : (
-              <>
-                drop images here or{" "}
-                <span
-                  className={styles.select}
-                  role="button"
-                  onClick={selectFiles}
-                >
-                  browse
-                </span>
-              </>
-            )}
+            <div
+              className={styles.dragarea}
+              onDragOver={onDragOver}
+              onDragLeave={onDragLeave}
+              onDrop={onDrop}
+            >
+              {isDragging ? (
+                <span className={styles.select}>attache images </span>
+              ) : (
+                <>
+                  Attache images here or{" "}
+                  <span
+                    className={styles.select}
+                    role="button"
+                    onClick={selectFiles}
+                  >
+                    browse
+                  </span>
+                </>
+              )}
 
-            <input
-              name="file"
-              type="file"
-              className={styles.file}
-              multiple
-              ref={fileInputRef}
-              onChange={onFilesSelected}
-            ></input>
-          </div>
-
-
-        <div className={styles.container}>
-          {images.map((images, index) => (
-            <div className={styles.image} key={index}>
-              <span className={styles.delete} onClick={()=> deleteImage(index)} >&times;</span>
-              <img src={images.url} alt={images.name} />
+              <input
+                name="file"
+                type="file"
+                className={styles.file}
+                multiple
+                ref={fileInputRef}
+                onChange={onFilesSelected}
+              ></input>
             </div>
-          ))}
-        </div>
-        </div>
+
+            <div className={styles.container}>
+              {images.map((images, index) => (
+                <div className={styles.image} key={index}>
+                  <span
+                    className={styles.delete}
+                    onClick={() => deleteImage(index)}
+                  >
+                    &times;
+                  </span>
+                  <img src={images.url} alt={images.name} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </form>
-        <button className={styles.button} type="submit">
-          <div className={styles.submit} 
-          onClick={(e) => submit(e)}
-          >Submit</div>
-        </button>
+      <button className={styles.button} type="submit">
+        <div className={styles.submit} onClick={(e) => submit(e)}>
+          Submit
+        </div>
+      </button>
     </div>
   );
 };

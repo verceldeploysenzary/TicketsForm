@@ -92,9 +92,11 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  border: 1px solid red;
 }
 
+.alert{
+  color: red;
+}
 
 .email2 {
   border: 0;
@@ -288,6 +290,9 @@
   z-index: 999;
   color: #0086fe;
 }
+
+
+
 @media screen and (min-width: 3000px) {
   .formParent {
     padding-left: var(--padding-1181xl);
