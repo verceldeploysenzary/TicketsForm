@@ -40,6 +40,8 @@ body {
   --gap-7xs: 6px;
 
   /* Paddings */
+  --padding-1181xl: 1400px;
+  --padding-1181x2: 900px;
   --padding-9xl: 28px;
   --padding-sm: 14px;
   --padding-base: 16px;

@@ -88,15 +88,16 @@ const Frame = () => {
 
   function submit(){
    setShowErrors(true)
-  if(errors !== "Name required" && errors !== "lastName required" && errors !== "email required" && errors !== "message required" )
-   setTimeout(() => {
-    setInput({
-      name: "",
-      lastName: "",
-      email: "",
-      message: "",
-    });
-  }, 3000);
+  if(errors !== "Name required" && errors !== "lastName required" && errors !== "email required" && errors !== "message required" ){
+    setTimeout(() => {
+      setInput({
+        name: "",
+        lastName: "",
+        email: "",
+        message: "",
+      });
+    }, 3000);
+  }
   }
 
 
@@ -108,7 +109,7 @@ const Frame = () => {
         <div className={styles.formText}>
           <div className={styles.ticketForm}>Ticket Form</div>
           <div className={styles.fillInYour}>
-            Fill in your details about your ticket.
+            Fill in to create your ticket.
           </div>
         </div>
         <div className={styles.formFields}>

@@ -288,3 +288,18 @@
   z-index: 999;
   color: #0086fe;
 }
+@media screen and (min-width: 3000px) {
+  .formParent {
+    padding-left: var(--padding-1181xl);
+    padding-right: var(--padding-1181xl);
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .formParent {
+    padding-left: var(--padding-1181x2);
+    padding-right: var(--padding-1181x2);
+    box-sizing: border-box;
+  }
+}
